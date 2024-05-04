@@ -8,15 +8,15 @@ scrn_size = pygame.display.get_desktop_sizes()
 screen = pygame.display.set_mode((1355, 700), pygame.RESIZABLE, pygame.FULLSCREEN)
 
 mixer.init()
-mixer.music.load("votocomputado.mp3")
+mixer.music.load("imgs/votocomputado.mp3")
 mixer.music.set_volume(1)
 
 # Título e Logo 
 pygame.display.set_caption("URNA ELETRÔNICA - CTPM")
-logo = pygame.image.load("ctpmlogo.png")
+logo = pygame.image.load("imgs/ctpmlogo.png")
 pygame.display.set_icon(logo)
 
-layout = pygame.image.load("image.jpg")
+layout = pygame.image.load("imgs/image.jpg")
 layout = pygame.transform.scale(layout, (scrn_size[0][0]-100, scrn_size[0][1]-100))
 
 running = True
