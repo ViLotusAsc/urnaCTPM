@@ -16,7 +16,7 @@ pygame.display.set_caption("URNA ELETRÔNICA - CTPM")
 logo = pygame.image.load("imgs/ctpmlogon.png")
 pygame.display.set_icon(logo)
 
-layout = pygame.image.load("imgs/lytbrnc.jpg")
+layout = pygame.image.load("imgs/layoutwhite.jpg")
 layout = pygame.transform.scale(layout, (scrn_size[0][0]-100, scrn_size[0][1]-100))
 
 running = True
@@ -33,7 +33,8 @@ barRect = pygame.Rect((1100, 200), (400, 400))
 fonte = pygame.font.SysFont('verdana', 90)
 fonte2 = pygame.font.SysFont('verdana', 50)
 fonte3 = pygame.font.SysFont('verdana', 30)
-fonte4 = pygame.font.SysFont('verdana', 20)
+fonte4 = pygame.font.SysFont('verdana', 20, italic=True)
+fonte5 = pygame.font.SysFont('verdana', 17, italic=True)
 
 def updateVotes():
     with open("votos_database.json", "r") as file:
@@ -53,34 +54,52 @@ def texto(text1, text2, text3, text4, a1, a2, nomechapa, voto_cm):
     pygame.display.update()
 
 
-def blitInfo(hour, minute, second, milisecond):
+names_place = [(1227, 242), (1170, 273), (1248, 305), (1249, 335), (1252, 365), (1252, 395), (1324, 425), (1329, 455), (1381, 485), (1280, 516), (1280, 541), (1280, 567)]
+chapa1 = ["Kellen", "Maria Cecília", "Kaleb Nobre", "Miguel Catão", "Kauan Martins", "Ana Beatriz", "Rômulo César", "Letícia Almeida", "Juliane", "Gustavo Coutinho", "Arthur", "Cassiele"]
+
+
+def blitInfo(hour, minute, second, milisecond, nome):
     txNum = fonte2.render("Número:", True, (0, 0, 0))
     txChapa = fonte2.render("Chapa:", True, (0, 0, 0))
     txAprTecla = fonte3.render("Aperte a tecla:", True, (0, 0, 0))
-    txEnter = fonte3.render("Enter para confirmar", True, (0, 0, 0))
-    txBkspc = fonte3.render("Backspace para restaurar", True, (0, 0, 0))
+    txEnter = fonte5.render("1. Enter para confirmar voto", True, (0, 0, 0))
+    txBkspc = fonte5.render("2. Delete para restaurar voto", True, (0, 0, 0))
     txColegio = fonte2.render("Colégio Tiradentes", True, (0, 0, 0))
+    data = fonte5.render("14/05/2024", True, (0, 0, 0))
+    data_vota = fonte5.render("Data da votação:", True, (0, 0, 0))
+    prtc = fonte5.render("JWE (JSON Web Encryption)", True, (0, 0, 0))
+    licensa = fonte5.render("Sob Uso Apache 2.1", True, (0, 0, 0))
+    lcns2 = fonte5.render("Colégio Tiradentes;", True, (0, 0, 0))
+    lcns3 = fonte5.render("Governador Valadares", True, (0, 0, 0))
     svoto = fonte3.render("Seu voto para:", True, (0, 0, 0))
     txGremio = fonte2.render("Grêmio Estudantil", True, (0, 0, 0))
     hour = fonte4.render(f"{hour}:{minute}:{second}:{milisecond}", True, (0, 0, 0))
+    time_bl = fonte5.render(f"{minute}:{second}", True, (0, 0, 0))
     txPresid = fonte4.render("Presidente:", True, (0, 0, 0))
     txVice = fonte4.render("Vice:", True, (0, 0, 0))
     tx1sec = fonte4.render("1 Secretário:", True, (0, 0, 0))
     tx2sec = fonte4.render("2 Secretário:", True, (0, 0, 0))
     tx1tes = fonte4.render("1 Tesoureiro:", True, (0, 0, 0))
     tx2tes = fonte4.render("2 Tesoureiro:", True, (0, 0, 0))
-    txdsoc = fonte4.render("Diretor Social:", True, (0, 0, 0))
-    txdesp = fonte4.render("Diretor de Esportes:", True, (0, 0, 0))
-    txdsau = fonte4.render("Diretor de Saúde:", True, (0, 0, 0))
-    txpori = fonte4.render("Professor Orientador:", True, (0, 0, 0))
+    txdsoc = fonte4.render("Diretor de Esportes:", True, (0, 0, 0))
+    txdesp = fonte4.render("Diretor de Imprensa:", True, (0, 0, 0))
+    txdsau = fonte4.render("Diretor de Meio Ambiente:", True, (0, 0, 0))
+    txpori = fonte4.render("Conselho Fiscal:", True, (0, 0, 0))
 
 
     screen.blit(txColegio, (1000, 100))
     screen.blit(txNum, (90, 340))
     screen.blit(txChapa, (90, 500))
-    screen.blit(txAprTecla, (90, 650))
-    screen.blit(txEnter, (90, 700))
-    screen.blit(txBkspc, (90, 750))
+    screen.blit(txAprTecla, (150, 645))
+    screen.blit(txEnter, (100, 710))
+    screen.blit(txBkspc, (100, 750))
+    screen.blit(data, (898, 710))
+    screen.blit(data_vota, (606, 710))
+    screen.blit(time_bl, (928, 750))
+    screen.blit(prtc, (1031, 710))
+    screen.blit(licensa, (1308, 710))
+    screen.blit(lcns2, (1308, 740))
+    screen.blit(lcns3, (1308, 770))
     screen.blit(pygame.transform.scale(logo, (95, 95)),(1200, 5))
     screen.blit(svoto, (100, 10))
     screen.blit(hour, (700, 10))
@@ -95,25 +114,32 @@ def blitInfo(hour, minute, second, milisecond):
     screen.blit(txdesp, (1110, 450))
     screen.blit(txdsau, (1110, 480))
     screen.blit(txpori, (1110, 510))
+    pygame.draw.line(screen, (0, 0, 0), (50, 636), (10000, 636), 2)
+    pygame.draw.line(screen, (0, 0, 0), (50, 695), (10000, 695), 2)
+    pygame.draw.line(screen, (0, 0, 0), (596, 636), (596, 1000), 2)
+    pygame.draw.line(screen, (0, 0, 0), (1022, 636), (1022, 1000), 2)
+
+    if nome == "Chapa 1":
+        for nome in chapa1:
+            screen.blit(fonte5.render(nome, True, (0, 0, 0)), names_place[chapa1.index(nome)])
 
 
 nomechapa = ''
 
 chapa = {'nome': [], 'num':[]}
-nomes = ['Chapa 1', 'Chapa 2', 'Chapa 3', 'Chapa 4']
-numeros = [10, 20, 30, 40]
+nomes = ['Chapa 1', 'Chapa 2']
+numeros = ["01", "02"]
 for nme in nomes:
     chapa['nome'].append(nme)
 for num in numeros:
     chapa['num'].append(num)
-
 
 def fzrvoto(num1, num2): 
     num1 = str(num1) 
     num2 = str(num2) 
     num1 += num2
     try:
-        return int(num1) 
+        return num1 
     except Exception:
         pass
 
@@ -122,6 +148,8 @@ num2 = ''
 
 
 voto = 0
+
+nome = ""
 
 def num(contador):
     if contador == 1:
@@ -228,6 +256,8 @@ while running:
                         num1, num2 = '', ''
                         nomechapa = ''
                        
+            if event.type == pygame.MOUSEBUTTONDOWN:
+                print(event.pos)
                 
     if show_voto:
         scnds_N = datetime.now().second
@@ -262,7 +292,7 @@ while running:
 
     screen.blit(layout, (55, 5))
     hora = datetime.now()
-    blitInfo(hour=hora.hour, minute=hora.minute, second=hora.second, milisecond=hora.microsecond)
+    blitInfo(hour=hora.hour, minute=hora.minute, second=hora.second, milisecond=hora.microsecond, nome=nomechapa)
     pygame.draw.rect(screen, (0, 0, 0), barRect, 2)
     texto(num1, num2, num3, num4, a1, a2, nomechapa, show_voto)
     pygame.display.update()
