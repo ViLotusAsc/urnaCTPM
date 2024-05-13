@@ -54,7 +54,7 @@ def texto(text1, text2, text3, text4, a1, a2, nomechapa, voto_cm):
     pygame.display.update()
 
 
-names_place = [(1227, 242), (1170, 273), (1248, 305), (1249, 335), (1252, 365), (1252, 395), (1324, 425), (1329, 455), (1381, 485), (1280, 516), (1280, 541), (1280, 567)]
+names_place = [(1227, 241), (1170, 272), (1248, 304), (1249, 334), (1252, 364), (1252, 394), (1324, 424), (1329, 454), (1381, 484), (1280, 515), (1280, 541), (1280, 567)]
 chapa1 = ["Kellen", "Maria Cecília", "Kaleb Nobre", "Miguel Catão", "Kauan Martins", "Ana Beatriz", "Rômulo César", "Letícia Almeida", "Juliane", "Gustavo Coutinho", "Arthur", "Cassiele"]
 
 
