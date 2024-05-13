@@ -35,7 +35,7 @@ fonte2 = pygame.font.SysFont('verdana', 50)
 fonte3 = pygame.font.SysFont('verdana', 30)
 fonte4 = pygame.font.SysFont('verdana', 20, italic=True)
 fonte5 = pygame.font.SysFont('verdana', 17, italic=True)
-fonte6 = pygame.font.SysFont('verdana', 17, italic=True, bold=True)
+fonte6 = pygame.font.SysFont('verdana', 17)
 
 def updateVotes():
     with open("votos_database.json", "r") as file:
@@ -122,7 +122,7 @@ def blitInfo(hour, minute, second, milisecond, nome):
 
     if nome == "Chapa 1":
         for nome in chapa1:
-            screen.blit(fonte5.render(nome, True, (0, 0, 0)), names_place[chapa1.index(nome)])
+            screen.blit(fonte6.render(nome, True, (0, 0, 0)), names_place[chapa1.index(nome)])
 
 
 nomechapa = ''
