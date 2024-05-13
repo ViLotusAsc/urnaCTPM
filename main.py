@@ -35,6 +35,7 @@ fonte2 = pygame.font.SysFont('verdana', 50)
 fonte3 = pygame.font.SysFont('verdana', 30)
 fonte4 = pygame.font.SysFont('verdana', 20, italic=True)
 fonte5 = pygame.font.SysFont('verdana', 17, italic=True)
+fonte6 = pygame.font.SysFont('verdana', 17, italic=True, bold=True)
 
 def updateVotes():
     with open("votos_database.json", "r") as file:
@@ -87,7 +88,7 @@ def blitInfo(hour, minute, second, milisecond, nome):
     txpori = fonte4.render("Conselho Fiscal:", True, (0, 0, 0))
 
 
-    screen.blit(txColegio, (1000, 100))
+    screen.blit(txColegio, (1050, 100))
     screen.blit(txNum, (90, 340))
     screen.blit(txChapa, (90, 500))
     screen.blit(txAprTecla, (150, 645))
@@ -100,7 +101,7 @@ def blitInfo(hour, minute, second, milisecond, nome):
     screen.blit(licensa, (1308, 710))
     screen.blit(lcns2, (1308, 740))
     screen.blit(lcns3, (1308, 770))
-    screen.blit(pygame.transform.scale(logo, (95, 95)),(1200, 5))
+    screen.blit(pygame.transform.scale(logo, (95, 95)),(1250, 5))
     screen.blit(svoto, (100, 10))
     screen.blit(hour, (700, 10))
     screen.blit(txGremio, (300, 170))
