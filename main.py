@@ -57,6 +57,7 @@ def texto(text1, text2, text3, text4, a1, a2, nomechapa, voto_cm):
 
 names_place = [(1227, 241), (1170, 272), (1248, 304), (1249, 334), (1252, 364), (1252, 394), (1324, 424), (1329, 454), (1381, 484), (1280, 515), (1280, 541), (1280, 567)]
 chapa1 = ["Kellen", "Maria Cecília", "Kaleb Nobre", "Miguel Catão", "Kauan Martins", "Ana Beatriz", "Rômulo César", "Letícia Almeida", "Juliane", "Gustavo Coutinho", "Arthur", "Cassiele"]
+chapa2 = ["Caio Caetano", "Ana Julia", "Lara Almeida", "Maria Fernanda", "Mariana Oliveira", "Manuela Pereira", "Ivan de Sena", "Julia Souza", "Layra José", "Arthur Ferreira", "Luiz Henrique", "Caroline Pinho"]
 
 
 def blitInfo(hour, minute, second, milisecond, nome):
@@ -120,9 +121,12 @@ def blitInfo(hour, minute, second, milisecond, nome):
     pygame.draw.line(screen, (0, 0, 0), (596, 636), (596, 1000), 2)
     pygame.draw.line(screen, (0, 0, 0), (1022, 636), (1022, 1000), 2)
 
-    if nome == "Chapa 1":
+    if nome == "Chapa 2":
         for nome in chapa1:
             screen.blit(fonte6.render(nome, True, (0, 0, 0)), names_place[chapa1.index(nome)])
+    if nome == "Chapa 1":
+        for nome in chapa2:
+            screen.blit(fonte6.render(nome, True, (0, 0, 0)), names_place[chapa2.index(nome)])
 
 
 nomechapa = ''
